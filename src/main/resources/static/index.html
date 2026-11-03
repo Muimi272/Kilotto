@@ -1,0 +1,1001 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f6f3e9" />
+    <title>Kilotto</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script src="/theme.js"></script>
+    <script src="/opening.js"></script>
+    <link rel="stylesheet" href="/fonts/noto-sans-sc/font.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <svg
+      class="svg-sprite"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <symbol
+          id="i-arrow-up-right"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M6 18 18 6M6 6h12v12" />
+        </symbol>
+        <symbol
+          id="i-arrow-left"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m11 5-7 7 7 7M4 12h16" />
+        </symbol>
+        <symbol
+          id="i-arrow-right"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m13 5 7 7-7 7M4 12h16" />
+        </symbol>
+        <symbol
+          id="i-arrow-down-right"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m6 6 12 12M6 18h12V6" />
+        </symbol>
+        <symbol
+          id="i-chevron"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m6 9 6 6 6-6" />
+        </symbol>
+        <symbol
+          id="i-close"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m6 6 12 12M6 18 18 6" />
+        </symbol>
+        <symbol
+          id="i-plus"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 5v14M5 12h14" />
+        </symbol>
+        <symbol
+          id="i-minus"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M5 12h14" />
+        </symbol>
+        <symbol
+          id="i-search"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="10.5" cy="10.5" r="6.5" />
+          <path d="m16 16 4 4" />
+        </symbol>
+        <symbol
+          id="i-refresh"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 7v5h-5M4 17v-5h5" />
+          <path d="M6 7a7 7 0 0 1 11.8-1L20 9M4 15l2.2 3A7 7 0 0 0 18 17" />
+        </symbol>
+        <symbol
+          id="i-copy"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="8" y="8" width="12" height="13" rx="2" />
+          <path d="M16 8V3H3v13h5" />
+        </symbol>
+        <symbol
+          id="i-check"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m5 12 4 4L19 6" />
+        </symbol>
+        <symbol
+          id="i-eye"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+          <circle cx="12" cy="12" r="3" />
+        </symbol>
+        <symbol
+          id="i-eye-off"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="m3 3 18 18M10.6 5.1 12 5c6.5 0 10 7 10 7a18 18 0 0 1-3.2 3.8M6.2 6.2A19 19 0 0 0 2 12s3.5 7 10 7a11 11 0 0 0 5.8-1.8M10 10a3 3 0 0 0 4 4"
+          />
+        </symbol>
+        <symbol
+          id="i-sun"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="4" />
+          <path
+            d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"
+          />
+        </symbol>
+        <symbol
+          id="i-moon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20.5 14A9 9 0 0 1 10 3.5 9 9 0 1 0 20.5 14Z" />
+        </symbol>
+        <symbol
+          id="i-monitor"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="4" width="18" height="13" rx="2" />
+          <path d="M8 21h8M12 17v4" />
+        </symbol>
+        <symbol
+          id="i-spark"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M12 1v22M1 12h22M4.2 4.2l15.6 15.6M4.2 19.8 19.8 4.2"
+            stroke-width="1.7"
+          />
+        </symbol>
+        <symbol
+          id="i-burst"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            fill="currentColor"
+            stroke="none"
+            d="m12 0 2.4 7.2L21 3l-4.2 6.6L24 12l-7.2 2.4L21 21l-6.6-4.2L12 24l-2.4-7.2L3 21l4.2-6.6L0 12l7.2-2.4L3 3l6.6 4.2Z"
+          />
+        </symbol>
+        <symbol
+          id="i-users"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="9" cy="8" r="3" />
+          <path
+            d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 4a5 5 0 0 1 3 4v2"
+          />
+        </symbol>
+        <symbol
+          id="i-warning"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m12 3 10 18H2Z" />
+          <path d="M12 9v5M12 17v.1" />
+        </symbol>
+        <symbol
+          id="i-logout"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M9 4H4v16h5M9 12h12m-5-5 5 5-5 5" />
+        </symbol>
+        <symbol
+          id="i-play"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="m8 4 12 8-12 8Z" />
+        </symbol>
+        <symbol
+          id="i-clock"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 6v6l4 2" />
+        </symbol>
+      </defs></svg
+    ><a class="skip-link" href="#main">跳到主要内容</a>
+    <div id="opening" class="opening" aria-hidden="true">
+      <div class="opening-frame">
+        <svg class="opening-spark" viewBox="0 0 24 24" focusable="false">
+          <use href="#i-spark"></use>
+        </svg>
+        <span class="opening-wordmark">KILOTTO</span>
+        <div class="opening-rule"></div>
+      </div>
+    </div>
+    <header class="topbar">
+      <a class="brand" href="/join" data-route aria-label="Kilotto 首页"
+        ><b class="brand-mark">k.</b><strong>KILOTTO</strong></a
+      >
+      <nav id="main-nav" aria-label="主导航">
+        <a href="/join" data-route data-nav="join">加入现场</a
+        ><a href="/rooms" data-route data-nav="rooms" data-auth hidden
+          >房间管理</a
+        ><a href="/admin/users" data-route data-nav="users" data-admin hidden
+          >用户管理</a
+        >
+      </nav>
+      <div class="header-tools">
+        <span id="identity" class="identity"></span>
+        <div class="theme-control">
+          <svg class="icon theme-icon" aria-hidden="true" focusable="false">
+            <use href="#i-sun"></use>
+          </svg>
+          <div class="select-wrap">
+            <label class="sr-only" for="theme-select">主题</label
+            ><select id="theme-select">
+              <option value="system">跟随系统</option>
+              <option value="light">浅色</option>
+              <option value="dark">深色</option></select
+            ><svg
+              class="icon select-chevron"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#i-chevron"></use>
+            </svg>
+          </div>
+        </div>
+        <button id="account-button" class="secondary account-button" disabled>
+          <span>房主登录</span
+          ><svg class="icon" aria-hidden="true" focusable="false">
+            <use href="#i-arrow-up-right"></use>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <section id="startup" class="startup" role="status">
+        <svg class="icon startup-star" aria-hidden="true" focusable="false">
+          <use href="#i-spark"></use></svg
+        ><span id="startup-text">加载中</span
+        ><button id="retry-startup" class="secondary" hidden>重试</button>
+      </section>
+      <section
+        id="lobby"
+        data-page="join"
+        class="entry-layout"
+        hidden
+        aria-labelledby="lobby-title"
+      >
+        <div class="poster">
+          <div class="poster-top">
+            <span>KILOTTO</span
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-up-right"></use>
+            </svg>
+          </div>
+          <h1 id="lobby-title" tabindex="-1">
+            <span class="poster-line line-one">好运，</span>
+            <span class="poster-line line-two">即刻</span>
+            <span class="poster-line line-three">开场。</span>
+          </h1>
+          <div class="orbit" aria-hidden="true">
+            <svg viewBox="0 0 360 250">
+              <ellipse
+                cx="180"
+                cy="125"
+                rx="172"
+                ry="65"
+                transform="rotate(32 180 125)"
+              />
+              <ellipse
+                cx="180"
+                cy="125"
+                rx="172"
+                ry="65"
+                transform="rotate(-32 180 125)"
+              />
+              <circle cx="312" cy="185" r="9" class="orbit-dot" /></svg
+            ><svg class="icon orbit-spark" aria-hidden="true" focusable="false">
+              <use href="#i-spark"></use></svg
+            ><svg class="icon orbit-mini" aria-hidden="true" focusable="false">
+              <use href="#i-burst"></use>
+            </svg>
+          </div>
+          <div class="poster-bottom">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-spark"></use></svg
+            ><span>KILOTTO</span>
+          </div>
+        </div>
+        <div class="entry-side">
+          <form id="join-form" class="entry-ticket" novalidate>
+            <div class="ticket-top">
+              <span class="micro" aria-hidden="true">01 /</span
+              ><svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-down-right"></use>
+              </svg>
+            </div>
+            <h2>加入现场</h2>
+            <label for="room-code">房间码</label
+            ><input
+              id="room-code"
+              class="code-input"
+              placeholder="8 位房间码"
+              maxlength="8"
+              required
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+            /><label for="nickname">昵称 <span>选填</span></label
+            ><input
+              id="nickname"
+              placeholder="你的昵称"
+              maxlength="30"
+              autocomplete="nickname"
+            />
+            <p id="join-error" class="form-error" role="alert" hidden></p>
+            <button class="primary wide" type="submit" data-loading="正在入场">
+              <span>进入现场</span
+              ><svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up-right"></use>
+              </svg>
+            </button>
+            <div class="ticket-stub" aria-hidden="true">
+              <div class="barcode"></div>
+              <b>k.</b>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section id="login-page" data-page="login" class="form-layout" hidden>
+        <div class="form-poster">
+          <a class="back-link" href="/join" data-route
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-left"></use></svg
+            >返回加入现场</a
+          >
+          <div>
+            <p class="micro" aria-hidden="true">01 /</p>
+            <h1 tabindex="-1">
+              房主<br />登录<span class="accent-dot">.</span>
+            </h1>
+          </div>
+          <svg class="icon form-art" aria-hidden="true" focusable="false">
+            <use href="#i-spark"></use>
+          </svg>
+        </div>
+        <form id="login-form" class="full-form" novalidate>
+          <div class="form-id" aria-hidden="true">
+            KILOTTO
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-up-right"></use>
+            </svg>
+          </div>
+          <label for="username">用户名</label
+          ><input
+            id="username"
+            placeholder="输入用户名"
+            required
+            maxlength="50"
+            autocomplete="username"
+          /><label for="password">密码</label>
+          <div class="password-field">
+            <input
+              id="password"
+              type="password"
+              placeholder="输入密码"
+              required
+              maxlength="72"
+              autocomplete="current-password"
+            /><button
+              class="password-toggle"
+              type="button"
+              data-password="password"
+              aria-label="显示密码"
+              aria-pressed="false"
+            >
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-eye"></use>
+              </svg>
+            </button>
+          </div>
+          <p id="login-error" class="form-error" role="alert" hidden></p>
+          <button class="primary wide" type="submit" data-loading="正在登录">
+            <span>登录</span
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-up-right"></use>
+            </svg>
+          </button>
+        </form>
+      </section>
+      <section
+        id="dashboard"
+        data-page="rooms"
+        class="workspace"
+        hidden
+        aria-labelledby="dashboard-title"
+      >
+        <div class="page-heading">
+          <div>
+            <p class="micro" aria-hidden="true">02 /</p>
+            <h1 id="dashboard-title" tabindex="-1">
+              我的房间<span class="accent-dot">.</span>
+            </h1>
+          </div>
+          <a class="primary" href="/rooms/new" data-route
+            ><span>创建房间</span
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-plus"></use></svg
+          ></a>
+        </div>
+        <div class="list-toolbar">
+          <div class="search-field">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-search"></use></svg
+            ><label class="sr-only" for="room-search">搜索房间</label
+            ><input
+              id="room-search"
+              type="search"
+              placeholder="搜索房间名称、房间码或房主"
+            />
+          </div>
+          <div class="select-wrap">
+            <label class="sr-only" for="room-filter">房间状态</label
+            ><select id="room-filter">
+              <option value="ALL">全部状态</option>
+              <option value="OPEN">进行中</option>
+              <option value="CLOSED">已结束</option></select
+            ><svg
+              class="icon select-chevron"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#i-chevron"></use>
+            </svg>
+          </div>
+          <button
+            id="refresh-dashboard"
+            class="secondary"
+            data-loading="正在刷新"
+          >
+            <span>刷新</span
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-refresh"></use>
+            </svg>
+          </button>
+        </div>
+        <p id="dashboard-error" class="form-error" role="alert" hidden></p>
+        <div class="list-meta">
+          <span id="rooms-total" class="number-tag">0</span>
+        </div>
+        <div id="room-list" class="room-list" aria-label="房间列表"></div>
+      </section>
+      <section
+        id="create-room-page"
+        data-page="create-room"
+        class="form-layout"
+        hidden
+      >
+        <div class="form-poster">
+          <a class="back-link" href="/rooms" data-route
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-left"></use></svg
+            >返回房间列表</a
+          >
+          <div>
+            <p class="micro" aria-hidden="true">02 /</p>
+            <h1 tabindex="-1">
+              创建<br />房间<span class="accent-dot">.</span>
+            </h1>
+          </div>
+          <svg class="icon form-art" aria-hidden="true" focusable="false">
+            <use href="#i-spark"></use>
+          </svg>
+        </div>
+        <form id="create-room-form" class="full-form" novalidate>
+          <div class="form-id" aria-hidden="true">
+            KILOTTO
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-up-right"></use>
+            </svg>
+          </div>
+          <label for="room-title">房间名称</label
+          ><input
+            id="room-title"
+            placeholder="例如：周五抽奖现场"
+            maxlength="80"
+            required
+          />
+          <p id="create-room-error" class="form-error" role="alert" hidden></p>
+          <div class="form-actions">
+            <a class="secondary" href="/rooms" data-route>取消</a
+            ><button class="primary" type="submit" data-loading="正在创建">
+              <span>创建房间</span
+              ><svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up-right"></use>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </section>
+      <section
+        id="admin-panel"
+        data-page="users"
+        class="workspace"
+        hidden
+        aria-labelledby="admin-title"
+      >
+        <div class="page-heading">
+          <div>
+            <p class="micro" aria-hidden="true">03 /</p>
+            <h1 id="admin-title" tabindex="-1">
+              用户管理<span class="accent-dot">.</span>
+            </h1>
+          </div>
+          <a class="primary" href="/admin/users/new" data-route
+            ><span>创建用户</span
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-plus"></use></svg
+          ></a>
+        </div>
+        <div class="users-toolbar">
+          <button id="refresh-users" class="secondary" data-loading="正在刷新">
+            <span>刷新</span
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-refresh"></use>
+            </svg>
+          </button>
+        </div>
+        <p id="users-error" class="form-error" role="alert" hidden></p>
+        <div
+          class="table-wrap"
+          tabindex="0"
+          role="region"
+          aria-label="用户列表"
+        >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">用户名</th>
+                <th scope="col">角色</th>
+                <th scope="col">状态</th>
+                <th scope="col" class="actions-column">操作</th>
+              </tr>
+            </thead>
+            <tbody id="users"></tbody>
+          </table>
+        </div>
+        <div class="pager">
+          <span id="users-page" aria-live="polite">第 1 页</span>
+          <div>
+            <button
+              id="users-prev"
+              class="secondary"
+              aria-label="用户列表上一页"
+            >
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-left"></use></svg
+              ><span>上一页</span></button
+            ><button
+              id="users-next"
+              class="secondary"
+              aria-label="用户列表下一页"
+            >
+              <span>下一页</span
+              ><svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-right"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section
+        id="create-user-page"
+        data-page="create-user"
+        class="form-layout"
+        hidden
+      >
+        <div class="form-poster">
+          <a class="back-link" href="/admin/users" data-route
+            ><svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-left"></use></svg
+            >返回用户管理</a
+          >
+          <div>
+            <p class="micro" aria-hidden="true">03 /</p>
+            <h1 tabindex="-1">
+              创建<br />用户<span class="accent-dot">.</span>
+            </h1>
+          </div>
+          <svg class="icon form-art" aria-hidden="true" focusable="false">
+            <use href="#i-spark"></use>
+          </svg>
+        </div>
+        <form id="create-user-form" class="full-form" novalidate>
+          <div class="form-id" aria-hidden="true">
+            KILOTTO
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-up-right"></use>
+            </svg>
+          </div>
+          <label for="new-username">用户名</label
+          ><input
+            id="new-username"
+            placeholder="3–50 位字母、数字或 _.-"
+            required
+            maxlength="50"
+            autocomplete="off"
+          /><label for="new-password">初始密码</label>
+          <div class="password-field">
+            <input
+              id="new-password"
+              type="password"
+              placeholder="12–72 个字符"
+              required
+              maxlength="72"
+              autocomplete="new-password"
+            /><button
+              class="password-toggle"
+              type="button"
+              data-password="new-password"
+              aria-label="显示初始密码"
+              aria-pressed="false"
+            >
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-eye"></use>
+              </svg>
+            </button>
+          </div>
+          <label for="new-role">角色</label>
+          <div class="select-wrap">
+            <select id="new-role">
+              <option value="USER">房主</option>
+              <option value="ADMIN">管理员</option></select
+            ><svg
+              class="icon select-chevron"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="#i-chevron"></use>
+            </svg>
+          </div>
+          <p id="create-user-error" class="form-error" role="alert" hidden></p>
+          <div class="form-actions">
+            <a class="secondary" href="/admin/users" data-route>取消</a
+            ><button class="primary" type="submit" data-loading="正在创建">
+              <span>创建用户</span
+              ><svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-arrow-up-right"></use>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </section>
+      <section
+        id="room"
+        data-page="room"
+        class="room-page"
+        hidden
+        aria-labelledby="current-title"
+      >
+        <div class="room-top">
+          <button id="leave-room" class="text-button">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-arrow-left"></use></svg
+            ><span>离开房间</span>
+          </button>
+          <div class="connection-wrap">
+            <span id="connection" class="connection" role="status">连接中</span
+            ><button id="reconnect-room" class="secondary" hidden>
+              <span>重新连接</span
+              ><svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-refresh"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="room-header">
+          <div class="room-heading">
+            <p id="room-kind" class="micro"></p>
+            <h1 id="current-title" tabindex="-1">连接中</h1>
+            <p id="host-name" class="muted"></p>
+          </div>
+          <button id="share-room" class="share" aria-label="复制房间邀请链接">
+            <span
+              >房间码
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-copy"></use></svg></span
+            ><strong id="current-code"></strong
+            ><span id="share-label">复制邀请链接</span>
+          </button>
+        </div>
+        <nav class="room-tabs" aria-label="房间">
+          <a id="live-tab" href="/join" data-route>抽奖现场</a
+          ><a id="history-tab" href="/join" data-route
+            >幸运记录 <span id="history-count" class="number-tag">0</span></a
+          >
+        </nav>
+        <div id="room-error" class="form-error" role="alert" hidden></div>
+        <div id="live-panel" class="room-grid">
+          <div class="draw-stage">
+            <div class="stage-top">
+              <span class="micro" aria-hidden="true">KILOTTO</span
+              ><span id="round-label" class="stage-tag">等待开场</span>
+            </div>
+            <div id="winner-stage" aria-live="polite" aria-atomic="true"></div>
+            <p id="room-ended" class="ended" hidden></p>
+            <p id="my-status" class="my-status" hidden></p>
+            <div id="host-controls" hidden>
+              <form id="draw-form" class="draw-controls" novalidate>
+                <div class="draw-number">
+                  <label for="draw-count">本轮人数</label>
+                  <div class="stepper">
+                    <button
+                      id="draw-minus"
+                      type="button"
+                      aria-label="减少抽奖人数"
+                    >
+                      <svg class="icon" aria-hidden="true" focusable="false">
+                        <use href="#i-minus"></use>
+                      </svg></button
+                    ><input
+                      id="draw-count"
+                      type="number"
+                      min="1"
+                      max="100"
+                      value="1"
+                      required
+                      inputmode="numeric"
+                      aria-describedby="draw-hint"
+                    /><button
+                      id="draw-plus"
+                      type="button"
+                      aria-label="增加抽奖人数"
+                    >
+                      <svg class="icon" aria-hidden="true" focusable="false">
+                        <use href="#i-plus"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <button
+                  id="draw-button"
+                  class="primary"
+                  type="submit"
+                  data-loading="正在抽奖"
+                >
+                  <span>开始抽奖</span
+                  ><svg class="icon" aria-hidden="true" focusable="false">
+                    <use href="#i-play"></use>
+                  </svg>
+                </button>
+              </form>
+              <p id="draw-hint" class="field-hint" role="status">
+                暂无可抽取的参与者
+              </p>
+            </div>
+            <button id="close-room" class="stage-danger" hidden>
+              结束房间
+            </button>
+          </div>
+          <aside class="roster" aria-labelledby="roster-title">
+            <div class="section-heading">
+              <h2 id="roster-title">参与者</h2>
+              <span class="online-total"
+                ><strong id="online-count">0</strong> 在线</span
+              >
+            </div>
+            <p id="participant-hint" class="muted" hidden></p>
+            <div class="roster-stats">
+              <div>
+                <strong id="eligible-count">0</strong><span>待抽取</span>
+              </div>
+              <div><strong id="won-count">0</strong><span>已中奖</span></div>
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-spark"></use>
+              </svg>
+            </div>
+            <div class="search-field compact">
+              <svg class="icon" aria-hidden="true" focusable="false">
+                <use href="#i-search"></use></svg
+              ><label class="sr-only" for="participant-search"
+                >搜索参与者昵称</label
+              ><input
+                id="participant-search"
+                type="search"
+                placeholder="搜索昵称"
+              />
+            </div>
+            <ul id="participants" aria-label="参与者名单"></ul>
+          </aside>
+        </div>
+        <section
+          id="history-panel"
+          class="history"
+          hidden
+          aria-labelledby="history-title"
+        >
+          <div class="section-heading">
+            <h2 id="history-title" tabindex="-1">幸运记录</h2>
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="#i-spark"></use>
+            </svg>
+          </div>
+          <ol id="winner-history"></ol>
+        </section>
+      </section>
+      <section id="not-found" data-page="not-found" class="not-found" hidden>
+        <h1 tabindex="-1">页面不存在</h1>
+        <a class="primary" href="/join" data-route>返回加入现场</a>
+      </section>
+    </main>
+    <footer>
+      <span>KILOTTO</span
+      ><svg class="icon" aria-hidden="true" focusable="false">
+        <use href="#i-spark"></use></svg
+      ><span>k.</span>
+    </footer>
+    <div id="notice" class="notice" hidden>
+      <svg class="icon" aria-hidden="true" focusable="false">
+        <use href="#i-check"></use>
+      </svg>
+      <p id="notice-text" role="status" aria-live="polite"></p>
+      <button id="dismiss-notice" class="icon-button" aria-label="关闭提示">
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="#i-close"></use>
+        </svg>
+      </button>
+    </div>
+    <dialog
+      id="confirm-dialog"
+      aria-labelledby="confirm-title"
+      aria-describedby="confirm-description"
+    >
+      <div class="dialog-top">
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="#i-warning"></use></svg
+        ><button id="confirm-close" class="icon-button" aria-label="关闭确认">
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="#i-close"></use>
+          </svg>
+        </button>
+      </div>
+      <h2 id="confirm-title"></h2>
+      <p id="confirm-description" class="muted"></p>
+      <div class="dialog-actions">
+        <button id="confirm-cancel" class="secondary" autofocus>取消</button
+        ><button id="confirm-accept" class="primary danger-solid">
+          确认结束
+        </button>
+      </div>
+    </dialog>
+    <dialog id="share-dialog" aria-labelledby="share-title">
+      <div class="dialog-top">
+        <svg class="icon" aria-hidden="true" focusable="false">
+          <use href="#i-copy"></use></svg
+        ><button id="close-share" class="icon-button" aria-label="关闭邀请链接">
+          <svg class="icon" aria-hidden="true" focusable="false">
+            <use href="#i-close"></use>
+          </svg>
+        </button>
+      </div>
+      <h2 id="share-title">邀请链接</h2>
+      <label for="invite-link">链接</label
+      ><input id="invite-link" readonly /><button
+        id="select-invite"
+        class="primary wide"
+      >
+        <span>全选链接</span
+        ><svg class="icon" aria-hidden="true" focusable="false">
+          <use href="#i-copy"></use>
+        </svg>
+      </button>
+    </dialog>
+  </body>
+</html>

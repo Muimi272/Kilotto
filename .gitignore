@@ -1,0 +1,87 @@
+# Local databases, journals and backups
+*.db
+*.db-*
+*.db.*
+*.sqlite
+*.sqlite-*
+*.sqlite.*
+*.sqlite3
+*.sqlite3-*
+*.sqlite3.*
+/data/
+/backups/
+
+# Environment files and private Spring configuration
+.env
+.env.*
+!.env.example
+!.env.*.example
+/application.properties
+/application.yml
+/application.yaml
+application-local*.properties
+application-local*.yml
+application-local*.yaml
+application-secrets*.properties
+application-secrets*.yml
+application-secrets*.yaml
+
+# Build output and local tool caches
+/target/
+/build/
+/dist/
+*.class
+/.mvn/wrapper/maven-wrapper.jar
+node_modules/
+__pycache__/
+*.py[cod]
+.cache/
+/coverage/
+/playwright-report/
+/test-results/
+
+# Runtime logs, process markers and JVM dumps
+/logs/
+*.log
+*.log.*
+*.pid
+*.pid.lock
+*.hprof
+hs_err_pid*
+replay_pid*
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# Operating system files and temporary copies
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~

@@ -1,0 +1,5 @@
+Noto Sans SC variable font, weights 400-800.
+Source: https://github.com/google/fonts/tree/main/ofl/notosanssc
+WOFF2 subsets distributed by Google Fonts, version v41.
+License: SIL Open Font License 1.1 (see OFL.txt).
+Unicode ranges load only the subsets needed by visible text.
