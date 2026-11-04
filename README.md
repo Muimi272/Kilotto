@@ -57,10 +57,21 @@ mvnw / mvnw.cmd          Maven Wrapper 启动脚本
 | `PORT` | `8080` | HTTP/WebSocket 端口 |
 | `KILOTTO_DATABASE_URL` | `jdbc:sqlite:kilotto.db?busy_timeout=5000&foreign_keys=on` | SQLite JDBC URL |
 | `KILOTTO_COOKIE_SECURE` | `false` | HTTPS 部署设置为 `true` |
+| `KILOTTO_WEBSOCKET_ALLOWED_ORIGIN_PATTERNS` | 空（仅同源） | WebSocket 额外允许的来源，多个用英文逗号分隔 |
 | `KILOTTO_ADMIN_USERNAME` | 空 | 首次初始化管理员用户名 |
 | `KILOTTO_ADMIN_PASSWORD` | 空 | 首次初始化管理员密码 |
 
 前端与 API 使用同一域名。反向代理需转发 WebSocket Upgrade 请求，并将连接空闲超时设为大于 25 秒。HTTP Cookie 为 HttpOnly、SameSite=Lax；生产环境使用 HTTPS 并启用 Secure Cookie。SQLite 连接池限制为 1，避免本项目的并发写锁竞争。
+
+通过 Cloudflare Tunnel 将公网 HTTPS 转发到本地 HTTP 时，浏览器的 `Origin` 与应用看到的协议、主机或端口可能不同，导致 WebSocket 握手被同源检查拒绝。在启动应用前允许实际访问的公网来源，例如：
+
+```powershell
+$env:KILOTTO_WEBSOCKET_ALLOWED_ORIGIN_PATTERNS = 'https://lottery.example.com'
+$env:KILOTTO_COOKIE_SECURE = 'true'
+java -jar target/kilotto-0.1.2.jar
+```
+
+将示例域名替换为自己的域名，填写网页的来源（`https://域名`，非默认端口需包含端口），不要填写 `wss://` 或路径，也不要加末尾 `/`。多个来源可写成 `https://lottery.example.com,https://lottery.example.org`；也支持 `https://*.example.com` 模式。设为 `*` 会允许所有来源访问 WebSocket，建议部署时填写自己的域名。此配置只作用于 WebSocket 握手。
 
 `kilotto.limits.logins-per-minute`（默认 60）和 `kilotto.limits.upgrades-per-minute`（默认 600）按远端 IP 限制登录与握手请求，使用可补充的令牌桶。`kilotto.limits.connections`（默认 5000）限制总 WebSocket 数，`kilotto.limits.guest-connections`（默认 16）限制每个游客会话的连接数。可通过 Spring 配置或对应环境变量覆盖。共享出口的大型活动应按规模调整；应用默认不相信客户端自行填写的 `X-Forwarded-For`，反向代理需限制流量并正确配置可信代理。JSON 请求体上限为 16 KiB，覆盖已知长度和分块传输。
 
@@ -99,7 +110,7 @@ mvnw / mvnw.cmd          Maven Wrapper 启动脚本
 ws://localhost:8080/ws/rooms/XXXXXXXX?nickname=URL编码后的昵称
 ```
 
-HTTPS 部署使用 `wss://`。默认只接受同源浏览器连接。握手成功后，服务端发送：
+HTTPS 部署使用 `wss://`。默认只接受同源浏览器连接；额外来源通过 `KILOTTO_WEBSOCKET_ALLOWED_ORIGIN_PATTERNS` 配置。握手成功后，服务端发送：
 
 ```json
 {"type":"joined","participantId":"服务端生成的游客ID或空字符串","observer":false}
@@ -119,7 +130,7 @@ HTTPS 部署使用 `wss://`。默认只接受同源浏览器连接。握手成�
 
 ```powershell
 .\mvnw.cmd verify
-java -jar target/kilotto-0.1.0.jar
+java -jar target/kilotto-0.1.2.jar
 ```
 
 ## 发布 Release
@@ -127,8 +138,8 @@ java -jar target/kilotto-0.1.0.jar
 将待发布版本的 `pom.xml` 版本号更新并提交后，推送以 `v` 开头的标签即可触发 `.github/workflows/release.yml`：
 
 ```powershell
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.1.2
+git push origin v0.1.2
 ```
 
 工作流使用 Java 21，运行前端测试和 Maven `clean verify`，将包含依赖的可执行 JAR 与 `SHA256SUMS` 校验文件上传到对应的 GitHub Release，并自动生成发布说明。包含 `-` 的标签（如 `v0.2.0-rc.1`）会标记为预发布。

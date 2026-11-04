@@ -435,7 +435,8 @@ class LotteryIntegrationTests {
             token(); // Establish the HTTP session before upgrading.
             Socket listener = new Socket();
             String path = "/ws/rooms/" + code + (code.contains("?") ? "&" : "?") + "nickname=" + URLEncoder.encode(nickname, java.nio.charset.StandardCharsets.UTF_8);
-            listener.socket = http.newWebSocketBuilder().buildAsync(URI.create("ws://localhost:" + port + path), listener).get(5, TimeUnit.SECONDS);
+            listener.socket = http.newWebSocketBuilder().header("Origin", "http://localhost:" + port)
+                    .buildAsync(URI.create("ws://localhost:" + port + path), listener).get(5, TimeUnit.SECONDS);
             return listener;
         }
     }

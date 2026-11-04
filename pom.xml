@@ -9,7 +9,7 @@
     </parent>
     <groupId>club.muimi</groupId>
     <artifactId>kilotto</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.2</version>
     <name>Kilotto</name>
     <description>Guest-friendly live lottery rooms</description>
     <properties><java.version>21</java.version></properties>
