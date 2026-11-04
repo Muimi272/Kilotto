@@ -14,7 +14,9 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        // Default origin policy is same-origin; do not use wildcard origins with session cookies.
-        registry.addHandler(handler, "/ws/rooms/{code}").addInterceptors(new RoomHandshakeInterceptor());
+        // Register the WebSocket handler for the "/ws/rooms/{code}" endpoint, allowing all origins and adding a handshake interceptor.
+        registry.addHandler(handler, "/ws/rooms/{code}")
+                .setAllowedOriginPatterns("*")
+                .addInterceptors(new RoomHandshakeInterceptor());
     }
 }
