@@ -1,4 +1,7 @@
-# Kilotto
+<p align="center">
+  <img src="src/main/resources/static/favicon.svg" width="128" height="128" alt="kilotto">
+</p>
+<h1 align="center">Kilotto</h1>
 
 基于 Java 21、Spring Boot 4、Spring Security、原生 WebSocket 和 SQLite 的免登录抽奖项目。自带静态页面，不需要 Node.js、Redis 或邮件服务。
 
