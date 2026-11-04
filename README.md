@@ -116,8 +116,23 @@ HTTPS 部署使用 `wss://`。默认只接受同源浏览器连接。握手成�
 
 ```powershell
 .\mvnw.cmd verify
-java -jar target/kilotto-0.0.1-SNAPSHOT.jar
+java -jar target/kilotto-0.1.0.jar
 ```
+
+## 发布 Release
+
+将待发布版本的 `pom.xml` 版本号更新并提交后，推送以 `v` 开头的标签即可触发 `.github/workflows/release.yml`：
+
+```powershell
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+工作流使用 Java 21，运行前端测试和 Maven `clean verify`，将包含依赖的可执行 JAR 与 `SHA256SUMS` 校验文件上传到对应的 GitHub Release，并自动生成发布说明。包含 `-` 的标签（如 `v0.2.0-rc.1`）会标记为预发布。
+
+也可以在 GitHub Actions 的 **Release → Run workflow** 中填写已有标签重新发布；构建使用该标签对应的源码，同名附件会被替换。发布使用内置 `GITHUB_TOKEN`，无需额外配置令牌。
+
+## 测试
 
 开屏逻辑的前端回归测试使用 Node.js 内置测试工具（仅运行此项检查需要 Node.js）：
 
